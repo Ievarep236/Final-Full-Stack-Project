@@ -9,7 +9,10 @@ const dbPool = mysql.createPool(DB_CONFIG);
 
 router.get("/", authenticate, async (req, res) => {
   try {
-    const [data] = await dbPool.execute("SELECT * FROM clients");
+    const [data] = await dbPool.execute(
+      "SELECT * FROM clients WHERE users_id = ?",
+      [req.user.id],
+    );
     console.log(data);
     res.status(201).send(data);
   } catch (err) {
@@ -32,11 +35,11 @@ router.post("/", authenticate, async (req, res) => {
   }
 });
 
-router.delete("/", authenticate, async (req, res) => {
+router.delete("/:id", authenticate, async (req, res) => {
   const payload = req.body;
   try {
     const [data] = await dbPool.execute("DELETE FROM clients WHERE id = ?", [
-      payload.id,
+      req.params.id,
     ]);
     res.status(201).send(data);
   } catch (err) {
@@ -45,12 +48,12 @@ router.delete("/", authenticate, async (req, res) => {
   }
 });
 
-router.patch("/", authenticate, async (req, res) => {
+router.patch("/:id", authenticate, async (req, res) => {
   const payload = req.body;
   try {
     const [data] = await dbPool.execute(
       "UPDATE clients SET full_name = ?, email = ?, date_of_birth = ?  WHERE id = ?",
-      [payload.full_name, payload.email, payload.date_of_birth, payload.id],
+      [payload.full_name, payload.email, payload.date_of_birth, req.params.id],
     );
     res.status(201).send(data);
   } catch (err) {
