@@ -2,11 +2,35 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8080";
 
-export const getClients = () => axios.get(`${baseURL}/clients`);
+export const getClients = (token) =>
+  axios.get(`${baseURL}/clients`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-export const postClients = (body) => axios.post(`${baseURL}/clients`, body);
-export const deleteClient = (id) => axios.delete(`${baseURL}/clients/${id}`);
-export const patchClient = (id) => axios.patch(`${baseURL}/clients/${id}`);
+export const postClients = (body, token) =>
+  axios.post(`${baseURL}/clients`, body, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const deleteClient = (id, token) =>
+  axios.delete(`${baseURL}/clients/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+export const patchClient = (body, id, token) =>
+  axios.patch(`${baseURL}/clients/${id}`, body, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
 export const postLogin = (body) => axios.post(`${baseURL}/login`, body);
 export const postRegister = (body) => axios.post(`${baseURL}/register`, body);
