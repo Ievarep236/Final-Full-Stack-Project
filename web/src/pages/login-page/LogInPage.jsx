@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../../api";
 import Cookies from "js-cookie";
+import { StyledDiv } from "../register-page/ReisterPage.style";
 const LogInPage = () => {
   const navigate = useNavigate();
   const [full_name, setFullName] = useState("");
@@ -40,6 +41,9 @@ const LogInPage = () => {
 
   return (
     <>
+      <StyledDiv>
+        <h1>Log in</h1>
+      </StyledDiv>
       <Stack pt={2} spacing={2}>
         <TextField
           fullWidth
@@ -60,6 +64,7 @@ const LogInPage = () => {
         />
         <Button
           variant="contained"
+          color="primary"
           onClick={() => handleLogin({ full_name, email, password })}
         >
           Log in

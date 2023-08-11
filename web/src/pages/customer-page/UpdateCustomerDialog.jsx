@@ -1,7 +1,6 @@
 import {
   Button,
   Dialog,
-  DialogActions,
   DialogContent,
   DialogTitle,
   Stack,
@@ -59,15 +58,11 @@ const UpdateCustomerDialos = ({
     if (errorState != null) setUpdatedErrorState(errorState);
   }, [errorState]);
 
-  const newValuefix = (body) => {
-    setValue(body);
-  };
-
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Update {name}</DialogTitle>
+      <DialogTitle align="center">Update {name}</DialogTitle>
       <DialogContent>
-        <Stack pt={2} spacing={2}>
+        <Stack pt={2} spacing={2} sx={{ margin: "20px" }}>
           <TextField
             label={name}
             value={updatedName}
@@ -90,12 +85,18 @@ const UpdateCustomerDialos = ({
           </LocalizationProvider>
           {updatedErrorState && (
             <Typography color="#FF0000" textAlign={"center"}>
-              There's an error in the form
+              There is an error in the form
             </Typography>
           )}
         </Stack>
       </DialogContent>
-      <DialogActions>
+
+      <Stack
+        pt={2}
+        spacing={2}
+        direction="row"
+        sx={{ display: "flex", justifyContent: "center", margin: "20px" }}
+      >
         <Button
           variant="contained"
           onClick={() => {
@@ -121,7 +122,7 @@ const UpdateCustomerDialos = ({
         >
           Cancel
         </Button>
-      </DialogActions>
+      </Stack>
     </Dialog>
   );
 };

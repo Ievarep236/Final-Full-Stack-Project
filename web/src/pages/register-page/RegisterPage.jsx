@@ -1,7 +1,7 @@
 import { Stack, TextField, Button } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { postLogin, postRegister } from "../../../api";
+import { postRegister } from "../../../api";
 import Cookies from "js-cookie";
 import { StyledDiv } from "./ReisterPage.style";
 const RegisterPage = () => {
