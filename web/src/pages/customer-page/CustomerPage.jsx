@@ -10,7 +10,7 @@ import {
   postClients,
 } from "../../../api";
 import UpdateCustomerDialos from "./UpdateCustomerDialog";
-import { set } from "date-fns";
+import { StyledDiv } from "../register-page/ReisterPage.style";
 
 const CustomerPage = () => {
   const token = Cookies.get("token");
@@ -35,7 +35,6 @@ const CustomerPage = () => {
   };
 
   const [clientList, setClientList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const fetchClientList = async (token) => {
     try {
@@ -56,6 +55,7 @@ const CustomerPage = () => {
 
   const handleNewClient = async (body) => {
     try {
+      console.log(body);
       const responce = await postClients(
         {
           full_name: body.full_name,
@@ -64,7 +64,7 @@ const CustomerPage = () => {
         },
         token
       );
-      console.log(responce);
+
       setErrorTextAdd(false);
       setIsDialogOpen(false);
     } catch (err) {
@@ -74,6 +74,7 @@ const CustomerPage = () => {
   };
 
   const handleUpdate = async (body, id) => {
+    console.log(body);
     const update = {
       full_name: body.updatedName,
       email: body.updatedEmail,
@@ -112,33 +113,53 @@ const CustomerPage = () => {
   const card = (data) => {
     return (
       <>
-        <Stack pt={2} spacing={2}>
-          <CardContent>
-            <Typography> {data.full_name}</Typography>
-            <Typography> {data.email}</Typography>
-            <Typography> {data.date_of_birth.substring(0, 10)}</Typography>
-          </CardContent>
-        </Stack>
+        <Stack
+          direction="row"
+          sx={{
+            width: 500,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            margin: "15px",
+          }}
+        >
+          <Stack>
+            <CardContent>
+              <Typography variant="h6"> {data.full_name}</Typography>
+              <Typography> {data.email}</Typography>
+              <Typography> {data.date_of_birth.substring(0, 10)}</Typography>
+            </CardContent>
+          </Stack>
 
-        <Stack pt={2} spacing={2} direction="row">
-          <Button
-            variant="contained"
-            onClick={() => {
-              setCurrentlyUpdatingid(data.id);
-              setCurrentlyUpdatingClient(data.full_name);
-              setCurrentlyUpdatingEmail(data.email);
-              setCurrentlyUpdatingBirthday(data.date_of_birth.substring(0, 10));
-              setUpdateDialogOpen(true);
+          <Stack
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              margin: "15px",
             }}
           >
-            Update
-          </Button>
-          <Button
-            variant="text"
-            onClick={() => handleDeleteClient(data.id, token)}
-          >
-            Delete
-          </Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                setCurrentlyUpdatingid(data.id);
+                setCurrentlyUpdatingClient(data.full_name);
+                setCurrentlyUpdatingEmail(data.email);
+                setCurrentlyUpdatingBirthday(
+                  data.date_of_birth.substring(0, 10)
+                );
+                setUpdateDialogOpen(true);
+              }}
+            >
+              Update
+            </Button>
+            <Button
+              variant="text"
+              onClick={() => handleDeleteClient(data.id, token)}
+            >
+              Delete
+            </Button>
+          </Stack>
         </Stack>
       </>
     );
@@ -146,25 +167,35 @@ const CustomerPage = () => {
 
   return (
     <div>
-      <Stack pt={2} spacing={2} direction="row">
+      <StyledDiv>
+        {" "}
         <h1>Customer Page</h1>
-        <Stack direction="row">
-          <Button
-            variant="contained"
-            size="medium"
-            onClick={() => {
-              setIsDialogOpen(true);
-            }}
-          >
-            Add customer
-          </Button>
-          <Button onClick={() => logOut()}>Log out</Button>
-        </Stack>
+      </StyledDiv>
+      <Stack
+        pt={2}
+        spacing={2}
+        direction="row"
+        sx={{ display: "flex", justifyContent: "center", margin: "20px" }}
+      >
+        <Button
+          variant="contained"
+          size="medium"
+          onClick={() => {
+            setIsDialogOpen(true);
+          }}
+        >
+          Add customer
+        </Button>
+        <Button onClick={() => logOut()}>Log out</Button>
       </Stack>
-
-      <Stack pt={2} spacing={2}>
+      <Stack pt={2} spacing={2} sx={{ display: "flex", alignItems: "center" }}>
         {clientList.map((client) => (
-          <Card key={client.id} variant="outlined">
+          <Card
+            key={client.id}
+            direction="row"
+            variant="outlined"
+            sx={{ maxWidth: 400, display: "flex", alignItems: "center" }}
+          >
             {card(client)}
           </Card>
         ))}
