@@ -15,7 +15,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 const AddCustomerDialog = ({ errorState, open, onClose, onSave, loading }) => {
   const [full_name, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [date_of_birth, setDateOfBirth] = useState("");
+  const [date_of_birth, setDateOfBirth] = useState();
   const [updatedErrorState, setUpdatedErrorState] = useState(errorState);
 
   useEffect(() => {

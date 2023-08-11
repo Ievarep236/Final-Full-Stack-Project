@@ -64,7 +64,7 @@ const CustomerPage = () => {
         },
         token
       );
-      console.log(responce);
+      console.log(body);
       setErrorTextAdd(false);
       setIsDialogOpen(false);
     } catch (err) {
@@ -161,10 +161,9 @@ const CustomerPage = () => {
           <Button onClick={() => logOut()}>Log out</Button>
         </Stack>
       </Stack>
-
       <Stack pt={2} spacing={2}>
         {clientList.map((client) => (
-          <Card key={client.id} variant="outlined">
+          <Card key={client.id} variant="outlined" sx={{ maxWidth: 300 }}>
             {card(client)}
           </Card>
         ))}

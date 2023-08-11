@@ -6,10 +6,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const App = () => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <RouterProvider router={routes} />
-      </LocalizationProvider>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <RouterProvider router={routes} />
     </LocalizationProvider>
   );
 };

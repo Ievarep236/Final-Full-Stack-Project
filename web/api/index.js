@@ -25,7 +25,7 @@ export const deleteClient = (id, token) =>
   });
 
 export const patchClient = (body, id, token) =>
-  axios.patch(`${baseURL}/clients/${id}`, body, {
+  axios.put(`${baseURL}/clients/${id}`, body, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,

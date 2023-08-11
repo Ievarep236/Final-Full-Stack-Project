@@ -65,7 +65,7 @@ router.delete("/:id", authenticate, async (req, res) => {
   }
 });
 
-router.patch("/:id", authenticate, async (req, res) => {
+router.put("/:id", authenticate, async (req, res) => {
   let payload = req.body;
 
   try {

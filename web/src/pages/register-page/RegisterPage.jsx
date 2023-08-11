@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postLogin, postRegister } from "../../../api";
 import Cookies from "js-cookie";
+import { StyledDiv } from "./ReisterPage.style";
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [full_name, setFullName] = useState("");
@@ -54,6 +55,9 @@ const RegisterPage = () => {
 
   return (
     <>
+      <StyledDiv>
+        <h1>Registratio</h1>
+      </StyledDiv>
       <Stack pt={2} spacing={2}>
         <TextField
           fullWidth
