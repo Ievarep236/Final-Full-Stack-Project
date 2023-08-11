@@ -3,8 +3,8 @@
 
   background: rgb(224, 247, 247);
   background: linear-gradient(
-    80deg,
-    rgba(224, 247, 247, 1) 0%,
-    rgba(237, 224, 247, 1) 100%
+    95deg,
+    rgb(233, 248, 245) 0%,
+    rgb(186, 209, 236) 100%
   );
 }

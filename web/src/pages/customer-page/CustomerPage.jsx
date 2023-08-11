@@ -127,7 +127,9 @@ const CustomerPage = () => {
             <CardContent>
               <Typography variant="h6"> {data.full_name}</Typography>
               <Typography> {data.email}</Typography>
-              <Typography> {data.date_of_birth.substring(0, 10)}</Typography>
+              <Typography>
+                {new Date(data.date_of_birth).toISOString().substring(0, 10)}
+              </Typography>
             </CardContent>
           </Stack>
 
@@ -168,7 +170,6 @@ const CustomerPage = () => {
   return (
     <div>
       <StyledDiv>
-        {" "}
         <h1>Customer Page</h1>
       </StyledDiv>
       <Stack
