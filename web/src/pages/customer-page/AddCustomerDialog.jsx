@@ -16,7 +16,6 @@ const AddCustomerDialog = ({ errorState, open, onClose, onSave }) => {
   const [email, setEmail] = useState("");
   const [date_of_birth, setDateOfBirth] = useState();
   const [updatedErrorState, setUpdatedErrorState] = useState(errorState);
-  console.log(date_of_birth);
 
   useEffect(() => {
     if (errorState != null) setUpdatedErrorState(errorState);
